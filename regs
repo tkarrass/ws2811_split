@@ -1,0 +1,27 @@
+       
+TCCRA1 = 0;  // 0 0 0 0 0 0 0 0
+             // ICNC1 ICES1 - WGM13 CTC1  CS12..10
+TCCRB1 = 14; //   0     0   0   0     1     1 1 0
+             // clear counter to 0 on match
+
+// TCNT1H/L  automatisch 0
+
+// OCR1H/L  immer erst H dann L schreiben, interrupts deaktivieren!
+            lesend erst L dann H
+cli()
+// 24 * 75 = 1800
+// 1800 = 00000111 00001000
+//  hex = 0x708;
+// minus 1 wegen gründen:
+OCR1H = 0x07;
+OCR1L = 0x07;
+sei()
+
+// timer/counter interrupt mask:
+            // TOIE1 OCIE1A - - TICIE - TOIE0 -
+TIMSK = 64; //   0      1   0 0   0   0   0   0
+            // TOV1 OCF1A - - ICF1 - TOV0 -
+//TIFR  =   ; //  
+
+
+4 + ld, lshift, out + 2
