@@ -8,8 +8,8 @@ int main(void) {
 	// init:
 	cli();
 	// port out
-	 
-	port = 1
+	DDRA = 0b11111111;
+	PORTA = 0b11111110;
 
 	// pin in
 	
@@ -27,6 +27,6 @@ int main(void) {
 	return 0; // mandatory for c, never reached in reality
 }
 
-ISR(TIMER1_COMPA_vect) {
+ISR(TIMER1_COMPA) {
 	
 }
